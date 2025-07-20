@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: music-generator
+    runtime: python
+    python:
+      version: "3.10.13"
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: |
+      python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PORT
+        value: 80
+      - key: PYTHONUNBUFFERED
+        value: 1
